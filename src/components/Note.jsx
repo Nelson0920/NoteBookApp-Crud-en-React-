@@ -3,7 +3,7 @@ import { Button, Container, Modal, ModalHeader, FormGroup, ModalFooter, ModalBod
 import "../styles/Note.scss"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-/*Datos */
+/*elements */
 const data = [{
     id: 1,
     tema: 'Examen de Mate',
@@ -37,8 +37,8 @@ class Note extends React.Component {
     modalOpen = () =>{
         this.setState({modalInsert: true})
     }
-    modalOpen2 = (dato) =>{
-        this.setState({modalEdit: true, form: dato})
+    modalOpen2 = (element) =>{
+        this.setState({modalEdit: true, form: element})
     }
 
     /*Funciones para cerrar los modales*/
@@ -49,7 +49,7 @@ class Note extends React.Component {
         this.setState({modalEdit: false})
     }
 
-    /*Funciones insertar los datos en un modal*/
+    /*Funciones insertar los elements en un modal*/
     insert = () =>{
         var valueNew = {...this.state.form}
         valueNew.id= this.state.data.length+1
@@ -62,8 +62,8 @@ class Note extends React.Component {
     edit = (data) =>{
         var counter = 0
         var list = this.state.data
-        list.map((dato)=>{
-            if(data.id == dato.id){
+        list.map((element)=>{
+            if(data.id == element.id){
                 list[counter].tema = data.tema
                 list[counter].descripcion = data.descripcion
             }
@@ -78,13 +78,13 @@ class Note extends React.Component {
         if(option){
             var counter = 0
             var list = this.state.data
-            list.map((dato) =>{
-                if(dato.id == dato.id){
+            list.map((element) =>{
+                if(element.id == data.id){
                     list.splice(counter, 1)
                 }
                 counter++
             })
-            this.setState({data: list})
+        this.setState({data: list})
         }
     }
 
@@ -98,18 +98,18 @@ class Note extends React.Component {
                         <ion-icon name="add-circle"></ion-icon>
                     </Button>
                     <br /><br />
-                    {this.state.data.map((dato) => (
+                    {this.state.data.map((element) => (
                         <div className='Note'>
-                            <h3 className='idNote'>#{dato.id}</h3>
-                            <h3 className='titleNote'>Tema: {dato.tema}</h3>
+                            <h3 className='idNote'>#{element.id}</h3>
+                            <h3 className='titleNote'>Tema: {element.tema}</h3>
                             <div className='descriptionNote'>
                                 <h4>Descripcion de la nota: </h4>
-                                <p >{dato.descripcion}</p>
+                                <p >{element.descripcion}</p>
                                 <div className='buttons'>
-                                    <Button color='primary' onClick={()=>this.modalOpen2(dato)} title="Editar nota">
+                                    <Button color='primary' onClick={()=>this.modalOpen2(element)} title="Editar nota">
                                         <ion-icon name="create-outline" className="icons"></ion-icon>
                                     </Button>{' '}
-                                    <Button color='danger' onClick={()=>this.delete(dato)} title="Eliminar nota">
+                                    <Button color='danger' onClick={()=>this.delete(element)} title="Eliminar nota">
                                         <ion-icon name="trash-outline" className="icons"></ion-icon>
                                     </Button>
                                 </div>
