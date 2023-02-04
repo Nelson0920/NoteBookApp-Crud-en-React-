@@ -1,0 +1,6 @@
+@import url(./_var.scss);
+
+.button{
+    margin-top: 120px;
+    background: var(--purple);
+}
